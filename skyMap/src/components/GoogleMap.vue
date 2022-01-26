@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h2>Search and add a pin</h2>
+      <h2>Search and add a pin where you want to stargazing</h2>
       <GmapAutocomplete
         @place_changed='setPlace'
       />
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+const calcSun = require('./script/calcSun');
 export default {
   name: 'GoogleMap',
   data() {
@@ -59,6 +60,8 @@ export default {
         this.places.push(this.currentPlace);
         this.center = marker;
         this.currentPlace = null;
+        this.sunrise(marker.lat, marker.lng);
+        this.sunset(marker.lat, marker.lng);
       }
     },
     geolocate: function() {
@@ -69,6 +72,14 @@ export default {
         };
       });
     },
+    sunrise: function(latitude, longitude) {
+      var sunStr = calcSun.calcnew(1, latitude, longitude);
+      console.log(sunStr);
+    },
+    sunset: function(latitude, longitude) {
+      var sunStr = calcSun.calcnew(2, latitude, longitude);
+      console.log(sunStr);
+    }
   },
 };
 </script>
