@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <GoogleMap />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import GoogleMap from './components/GoogleMap.vue'
+//import GoogleMap from './components/GoogleMap.vue'
 
 export default {
   name: 'App',
-  components: {
-    GoogleMap
-  }
+  // components: {
+  //   GoogleMap
+  // }
 }
 </script>

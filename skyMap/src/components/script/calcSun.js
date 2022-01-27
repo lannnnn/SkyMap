@@ -276,18 +276,18 @@ module.exports = {
 
         var monthList = new Array(); // list of months and days for non-leap year
         var i = 0;
-        monthList[i++] = new month("1", 31, "Jan");
-        monthList[i++] = new month("2", 28, "Feb");
-        monthList[i++] = new month("3", 31, "Mar");
-        monthList[i++] = new month("4", 30, "Apr");
-        monthList[i++] = new month("5", 31, "May");
-        monthList[i++] = new month("6", 30, "Jun");
-        monthList[i++] = new month("7", 31, "Jul");
-        monthList[i++] = new month("8", 31, "Aug");
-        monthList[i++] = new month("9", 30, "Sep");
-        monthList[i++] = new month("10", 31, "Oct");
-        monthList[i++] = new month("11", 30, "Nov");
-        monthList[i++] = new month("12", 31, "Dec");
+        monthList[i++] = new this.month("1", 31, "Jan");
+        monthList[i++] = new this.month("2", 28, "Feb");
+        monthList[i++] = new this.month("3", 31, "Mar");
+        monthList[i++] = new this.month("4", 30, "Apr");
+        monthList[i++] = new this.month("5", 31, "May");
+        monthList[i++] = new this.month("6", 30, "Jun");
+        monthList[i++] = new this.month("7", 31, "Jul");
+        monthList[i++] = new this.month("8", 31, "Aug");
+        monthList[i++] = new this.month("9", 30, "Sep");
+        monthList[i++] = new this.month("10", 31, "Oct");
+        monthList[i++] = new this.month("11", 30, "Nov");
+        monthList[i++] = new this.month("12", 31, "Dec");
         var z = Math.floor(jd + 0.5);
         var f = (jd + 0.5) - z;
         var A = 0;
@@ -977,7 +977,6 @@ module.exports = {
         //      }
 
         if (hour == 0) {
-            PM = false;
             hour = 12;
         }
 
@@ -1116,17 +1115,11 @@ module.exports = {
         var JD = (this.calcJD(parseFloat(year), parseFloat(mos), parseFloat(day)));
 
         var riseTimeGMT = this.calcSunriseUTC(JD, latitude, longitude);
-        if (!this.isNumber(riseTimeGMT)) {
-            nosunrise = true;
-        }
 
         // Calculate sunset for this date
         // if no sunset is found, set flag nosunset
 
         var setTimeGMT = this.calcSunsetUTC(JD, latitude, longitude);
-        if (!this.isNumber(setTimeGMT)) {
-            nosunset = true;
-        }
         var riseStr = this.timeStringShortAMPM(riseTimeGMT, JD);
         var setStr = this.timeStringShortAMPM(setTimeGMT, JD);
 

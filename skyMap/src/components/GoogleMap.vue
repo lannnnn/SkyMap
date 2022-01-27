@@ -1,21 +1,21 @@
 <template>
   <div>
     <div>
-      <h2>Search and add a pin where you want to stargazing</h2>
-      <GmapAutocomplete
+      <h2 style="margin-left: 5px;">Search and add a pin where you want to stargazing</h2>
+      <GmapAutocomplete style="margin-left: 25px;"
         @place_changed='setPlace'
       />
-      <button
+      <button type="button" class="btn btn-dark" style="margin-left: 5px;"
         @click='addMarker'
       >
-        Add
+        Pin!
       </button>
     </div>
     <br>
     <GmapMap
       :center='center'
       :zoom='12'
-      style='width:100%;  height: 400px;'
+      style='width:100%;  height: 600px;'
     >
       <GmapMarker
         :key="index"
@@ -24,23 +24,29 @@
         @click="center=m.position"
       />
     </GmapMap>
+    <div class = "text-center">
+      <button type="button" class="btn btn-dark" style="margin-top: 15px;"
+        @click='starGaze'
+      >
+        Start Stargazing!
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
-const calcSun = require('./script/calcSun');
 export default {
   name: 'GoogleMap',
   data() {
     return {
-      center: { lat: 11.1216, lng: 46.0759 },
+      center: { },
       currentPlace: null,
       markers: [],
       places: [],
     }
   },
   mounted() {
-    this.geolocate();
+    this.getRouterData();
   },
   
   methods: {
@@ -60,8 +66,6 @@ export default {
         this.places.push(this.currentPlace);
         this.center = marker;
         this.currentPlace = null;
-        this.sunrise(marker.lat, marker.lng);
-        this.sunset(marker.lat, marker.lng);
       }
     },
     geolocate: function() {
@@ -72,14 +76,25 @@ export default {
         };
       });
     },
-    sunrise: function(latitude, longitude) {
-      var sunStr = calcSun.calcnew(1, latitude, longitude);
-      console.log(sunStr);
+    starGaze() {
+      this.$router.push({
+        path:'/starMap', 
+        query: {
+          'lat': JSON.stringify(this.center.lat),
+          'lng': JSON.stringify(this.center.lng),
+        }
+      })
     },
-    sunset: function(latitude, longitude) {
-      var sunStr = calcSun.calcnew(2, latitude, longitude);
-      console.log(sunStr);
-    }
+    getRouterData() {
+      if(this.$route.query.lat === undefined){
+        this.center ={ lat: 11.1216, lng: 46.0759 }
+        this.geolocate();
+      }
+      else {
+        this.center.lat = JSON.parse(this.$route.query.lat);
+        this.center.lng = JSON.parse(this.$route.query.lng);
+      }
+    },
   },
 };
 </script>
