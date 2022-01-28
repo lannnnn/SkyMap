@@ -6,6 +6,10 @@
       <div class="time row justify-content-center">current time: {{date}}</div>
       <p class="row justify-content-center"> Sunrise today: &nbsp;&nbsp;{{this.sunRise}}, &nbsp;Sunset today: &nbsp;&nbsp;{{this.sunSet}} &nbsp;(Time in GMT)</p>
     </div>
+    <div class="text-center">
+        <img :src="this.map" class="img-fluid">
+    </div>
+    <br>
     <div class="container-xxl">
         <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Right Ascension</span>
@@ -48,6 +52,7 @@
 
 <script>
     const calcSun = require('./script/calcSun');
+    const loadMap = require('./script/starMap');
     export default {
         data(){
             return {
@@ -73,6 +78,7 @@
             this.getRouterData()
             this.sunrise(this.center.lat, this.center.lng)
             this.sunset(this.center.lat, this.center.lng)
+            this.updateMap()
         },
         methods: {
             sunrise: function(latitude, longitude) {
@@ -95,22 +101,27 @@
                 })
             },
             updateMap() {
-                var lon = document.getElementById("lon").value;
-                if(lon == 'undefined' || !lon || !/[^\s]/.test(lon)) {
-                    lon = 0;
+                var lon = 0;
+                var limag = 6.0;
+                var starnm = 3.0;
+                var starbm = 5.0;
+                if(document.getElementById("lon")!=null && (lon == 'undefined' || !lon || !/[^\s]/.test(lon))) {
+                    lon = document.getElementById("lon").value;
                 }
-                var limag = document.getElementById("limag").value;
-                if(limag == 'undefined' || !limag || !/[^\s]/.test(limag)) {
-                    limag = 6.0;
+                if(document.getElementById("limag")!=null && (limag == 'undefined' || !limag || !/[^\s]/.test(limag))) {
+                    limag = document.getElementById("limag").value;
                 }
-                var starnm = document.getElementById("starnm").value;
-                if(starnm == 'undefined' || !starnm || !/[^\s]/.test(starnm)) {
-                    starnm = 3.0;
+                if(document.getElementById("starnm")!=null && (starnm == 'undefined' || !starnm || !/[^\s]/.test(starnm))) {
+                    starnm = document.getElementById("starnm").value;
                 }
-                var starbm = document.getElementById("starbm").value;
-                if(starbm == 'undefined' || !starbm || !/[^\s]/.test(starbm)) {
-                    starbm = 5.0;
+                if(document.getElementById("starbm")!=null && (starbm == 'undefined' || !starbm || !/[^\s]/.test(starbm))) {
+                    starbm = document.getElementById("starbm").value;
                 }
+                var payload = loadMap.combinePayload(lon, limag, starnm, starbm);
+                this.$axios.post("/map/cgi-bin/Yourtel", payload).then(res=>{
+                    var url = loadMap.requestUrl(res);
+                    this.map = "https://www.fourmilab.ch" + url;
+                })
             },
         }
     }

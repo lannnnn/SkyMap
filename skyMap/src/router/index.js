@@ -13,15 +13,15 @@ Vue.use(Router);
 export default new Router({
     routes: [
         {
-            path: '/',   // 跳转路径
-            name: 'GoogleMap',    // 名称
-            component: GoogleMap  // 组件
+            path: '/',   
+            name: 'GoogleMap',   
+            component: GoogleMap 
         },
         {
             path: '/starMap',
             name: 'starMap',
             component: starMap
         }
-    ]
+    ],
 });
 
