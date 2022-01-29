@@ -26,6 +26,14 @@ module.exports = {
             pathRewrite: {
                 '^/map': '/'
               }
+        },
+        '/light': {
+          target: 'https://www.lightpollutionmap.info',
+          ws: false,
+          changeOrigin: true,
+          pathRewrite: {
+            '^/light': '/'
+          }
         }
       },
       headers: {

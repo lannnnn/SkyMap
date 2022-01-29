@@ -21,7 +21,7 @@ export default new Router({
             path: '/starMap',
             name: 'starMap',
             component: starMap
-        }
+        },
     ],
 });
 

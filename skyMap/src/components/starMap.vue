@@ -2,12 +2,17 @@
   <div>
     <div>
       <h2 class="row justify-content-center">Your Star Map</h2>
-      <p class="row justify-content-center"> Your stargazing location is:&nbsp;&nbsp;&nbsp;({{this.center.lat}}, {{this.center.lng}})</p>
+      <p class="row justify-content-center h6"> Your stargazing location is:&nbsp;&nbsp;&nbsp;({{this.center.lat}}, {{this.center.lng}})</p>
+      <p class="row justify-content-center h6"> light pollution level here is:&nbsp;&nbsp;&nbsp;{{this.lightPol}}</p>
+      <p class="row justify-content-center"> {{this.comment}}</p>
+      <p class="row justify-content-center blockquote-footer"> {{this.message}}</p>
       <div class="time row justify-content-center">current time: {{date}}</div>
       <p class="row justify-content-center"> Sunrise today: &nbsp;&nbsp;{{this.sunRise}}, &nbsp;Sunset today: &nbsp;&nbsp;{{this.sunSet}} &nbsp;(Time in GMT)</p>
     </div>
     <div class="text-center">
         <img :src="this.map" class="img-fluid">
+        <br/>
+        <a href="http://cdsportal.u-strasbg.fr/" target="_blank"> wanna more message about the star? </a>
     </div>
     <br>
     <div class="container-xxl">
@@ -61,6 +66,9 @@
                 sunSet: "",
                 date: new Date(),
                 map: "",
+                lightPol: 0,
+                comment: "",
+                message: "",
             }
         },
         mounted(){
@@ -79,6 +87,7 @@
             this.sunrise(this.center.lat, this.center.lng)
             this.sunset(this.center.lat, this.center.lng)
             this.updateMap()
+            this.getLightPol()
         },
         methods: {
             sunrise: function(latitude, longitude) {
@@ -101,26 +110,67 @@
                 })
             },
             updateMap() {
-                var lon = 0;
+                var lon = 1;
                 var limag = 6.0;
                 var starnm = 3.0;
                 var starbm = 5.0;
-                if(document.getElementById("lon")!=null && (lon == 'undefined' || !lon || !/[^\s]/.test(lon))) {
-                    lon = document.getElementById("lon").value;
+                var tmp = 0;
+                if(document.getElementById("lon")!=null){
+                    tmp = document.getElementById("lon").value;
+                    if(!(tmp == 'undefined' || !tmp || !/[^\s]/.test(tmp))) {
+                        lon = tmp;
+                    }
                 }
-                if(document.getElementById("limag")!=null && (limag == 'undefined' || !limag || !/[^\s]/.test(limag))) {
-                    limag = document.getElementById("limag").value;
+                if(document.getElementById("limag")!=null){
+                    tmp = document.getElementById("limag").value;
+                    if(!(tmp == 'undefined' || !tmp || !/[^\s]/.test(tmp))) {
+                        limag = tmp;
+                    }
                 }
-                if(document.getElementById("starnm")!=null && (starnm == 'undefined' || !starnm || !/[^\s]/.test(starnm))) {
-                    starnm = document.getElementById("starnm").value;
+                if(document.getElementById("starnm")!=null){
+                    tmp = document.getElementById("starnm").value;
+                    if(!(tmp == 'undefined' || !tmp || !/[^\s]/.test(tmp))) {
+                        starnm = tmp;
+                    }
                 }
-                if(document.getElementById("starbm")!=null && (starbm == 'undefined' || !starbm || !/[^\s]/.test(starbm))) {
-                    starbm = document.getElementById("starbm").value;
+                if(document.getElementById("starbm")!=null){
+                    tmp = document.getElementById("starbm").value;
+                    if(!(tmp == 'undefined' || !tmp || !/[^\s]/.test(tmp))) {
+                        starbm = tmp;
+                    }
                 }
                 var payload = loadMap.combinePayload(lon, limag, starnm, starbm);
                 this.$axios.post("/map/cgi-bin/Yourtel", payload).then(res=>{
                     var url = loadMap.requestUrl(res);
                     this.map = "https://www.fourmilab.ch" + url;
+                })
+            },
+            getLightPol() {
+                this.$axios.get("/light/QueryRaster/", {
+                    params:{
+                        ql: 'viirs_2021',
+                        qt: 'point_t',
+                        qd: JSON.stringify(this.center.lng) + ',' + JSON.stringify(this.center.lat),
+                        key: 'r4LLevKa62JOuI78'
+                    }
+                }).then(res=>{
+                    const lightPol = (res.data).split(";");
+                    this.lightPol = lightPol[lightPol.length -1]
+                    this.comment = loadMap.processLevel(this.lightPol)
+                })
+                this.$axios.get("/light/QueryRaster/", {
+                    params: {
+                        ql: 'viirs_2021',
+                        qt: 'area_t',
+                        qd: loadMap.processRange(this.center.lat, this.center.lng),
+                        key: 'r4LLevKa62JOuI78'
+                    }
+                }).then(res=>{
+                    // data: pixel count, sum, ...., mean, std. dev, min, max
+                    var data = (res.data).split(";");
+                    var min = data[data.length - 2]
+                    var message = loadMap.processMessage(min)
+                    this.message = message
                 })
             },
         }
