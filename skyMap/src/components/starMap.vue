@@ -144,6 +144,12 @@
                     var url = loadMap.requestUrl(res);
                     this.map = "https://www.fourmilab.ch" + url;
                 })
+                // this.$axios.get('http://localhost:3000/')
+                //         .then(res => {
+                //             this.msg = res.data
+                //         }).catch(err => {
+                //             console.log(err);
+                //         })
             },
             getLightPol() {
                 this.$axios.get("/light/QueryRaster/", {

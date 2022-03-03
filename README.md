@@ -14,4 +14,9 @@ version and environment control:
 
 Anaconda, github, nodejs
 
+Start:
+
+run `npm start` under direction  /server/skyServer 
+run `npm run serve` under direction /skyMap
+
 
