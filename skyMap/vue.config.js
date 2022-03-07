@@ -34,6 +34,14 @@ module.exports = {
           pathRewrite: {
             '^/light': '/'
           }
+        },
+        '/local': {
+          target: 'http://localhost:3000/',
+          ws: false,
+          changeOrigin: true,
+          pathRewrite: {
+            '^/local': '/'
+          }
         }
       },
       headers: {

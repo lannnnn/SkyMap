@@ -86,9 +86,10 @@ export default {
       })
     },
     getRouterData() {
+      console.log(this.$route.query.lat === undefined)
       if(this.$route.query.lat === undefined){
         this.center ={ lat: 11.1216, lng: 46.0759 }
-        this.geolocate();
+        this.geolocate()
       }
       else {
         this.center.lat = JSON.parse(this.$route.query.lat);

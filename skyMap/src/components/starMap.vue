@@ -74,7 +74,7 @@
         mounted(){
             let _this = this; 
             this.timer = setInterval(() => {
-                _this.date = new Date().toUTCString() ; 
+                _this.date = new Date().toUTCString(); 
             }, 1000)
         },
         beforeDestroy() {
@@ -91,10 +91,21 @@
         },
         methods: {
             sunrise: function(latitude, longitude) {
-                this.sunRise = calcSun.calcnew(1, latitude, longitude);
+                // this.sunRise = calcSun.calcnew(1, latitude, longitude);
+                this.$axios.get('/local/calcSun/sunRise',{params:{lat:latitude, lng:longitude}})
+                        .then(res => {
+                            this.sunRise = res.data
+                        }).catch(err => {
+                            console.log(err);
+                        })
             },
             sunset: function(latitude, longitude) {
-                this.sunSet = calcSun.calcnew(2, latitude, longitude);
+                this.$axios.get('/local/calcSun/sunSet',{params:{lat:latitude, lng:longitude}})
+                        .then(res => {
+                            this.sunSet = res.data
+                        }).catch(err => {
+                            console.log(err);
+                        })
             },
             getRouterData() {
                 this.center.lat = JSON.parse(this.$route.query.lat);
