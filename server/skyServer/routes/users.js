@@ -10,13 +10,11 @@ router.get('/', function(req, res, next) {
 
 router.get('/sunRise', function(req, res, next) {
   var sunRise = calcSun.calcnew(1, req.query.lat, req.query.lng);
-  //console.log(sunRise);
   res.send(sunRise)
 });
 
 router.get('/sunSet', function(req, res, next) {
   var sunRise = calcSun.calcnew(2, req.query.lat, req.query.lng);
-  //console.log(sunRise);
   res.send(sunRise)
 });
 

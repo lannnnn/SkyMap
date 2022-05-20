@@ -3,12 +3,6 @@ module.exports = {
     //* DATA STRUCTURES     日出日落时间                          */
     //***********************************************************************/
 
-    month(name, numdays, abbr) {
-        this.name = name;
-        this.numdays = numdays;
-        this.abbr = abbr;
-    },
-
     ans(daySave, value) {
         this.daySave = daySave;
         this.value = value;
@@ -274,20 +268,22 @@ module.exports = {
 
     calcDayFromJD(jd) {
 
+        console.log(jd);
+
         var monthList = new Array(); // list of months and days for non-leap year
         var i = 0;
-        monthList[i++] = new this.month("1", 31, "Jan");
-        monthList[i++] = new this.month("2", 28, "Feb");
-        monthList[i++] = new this.month("3", 31, "Mar");
-        monthList[i++] = new this.month("4", 30, "Apr");
-        monthList[i++] = new this.month("5", 31, "May");
-        monthList[i++] = new this.month("6", 30, "Jun");
-        monthList[i++] = new this.month("7", 31, "Jul");
-        monthList[i++] = new this.month("8", 31, "Aug");
-        monthList[i++] = new this.month("9", 30, "Sep");
-        monthList[i++] = new this.month("10", 31, "Oct");
-        monthList[i++] = new this.month("11", 30, "Nov");
-        monthList[i++] = new this.month("12", 31, "Dec");
+        monthList[i++] = "Jan";
+        monthList[i++] = "Feb";
+        monthList[i++] = "Mar";
+        monthList[i++] = "Apr";
+        monthList[i++] = "May";
+        monthList[i++] = "Jun";
+        monthList[i++] = "Jul";
+        monthList[i++] = "Aug";
+        monthList[i++] = "Sep";
+        monthList[i++] = "Oct";
+        monthList[i++] = "Nov";
+        monthList[i++] = "Dec";
         var z = Math.floor(jd + 0.5);
         var f = (jd + 0.5) - z;
         var A = 0;
@@ -304,10 +300,11 @@ module.exports = {
         var D = Math.floor(365.25 * C);
         var E = Math.floor((B - D) / 30.6001);
 
+
         var day = B - D - Math.floor(30.6001 * E) + f;
         var month = (E < 14) ? E - 1 : E - 13;
 
-        return ((day < 10 ? "0" : "") + day + monthList[month - 1].abbr);
+        return ((day < 10 ? "0" : "") + day + " " + monthList[month - 1]);
     },
 
 

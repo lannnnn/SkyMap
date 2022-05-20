@@ -6,10 +6,6 @@ sky map: https://www.fourmilab.ch/yoursky/ --RESTFUL
 
 google map API
 
-Software used in this project:
-
-star message: https://rhodesmill.org/skyfield/ --python
-
 version and environment control:
 
 Anaconda, github, nodejs
@@ -20,4 +16,12 @@ run `npm start` under direction  /server/skyServer
 
 run `npm run serve` under direction /skyMap
 
+Main functions:
+
+1. using google map to find a selected position (google map API)
+2. using the latitude and the longitude obtained by google map to get the light polution level (light map API), and do analysis, give suggestions
+3. using the latitude and the longitude obtained by google map to get the sunrise time and sunset time (calculation by local server)
+4. using the latitude and the longitude obtained by google map to get the star map (star map API)
+5. enable to customorize the star map (star map API)
+6. integrated the star message database, can searching by using the name shown in the star map
 

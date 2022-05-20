@@ -56,12 +56,12 @@
 </template>
 
 <script>
-    const calcSun = require('./script/calcSun');
+    // const calcSun = require('./script/calcSun');
     const loadMap = require('./script/starMap');
     export default {
         data(){
             return {
-                center:{},
+                center:{}, 
                 sunRise: "",
                 sunSet: "",
                 date: new Date(),
@@ -92,7 +92,7 @@
         methods: {
             sunrise: function(latitude, longitude) {
                 // this.sunRise = calcSun.calcnew(1, latitude, longitude);
-                this.$axios.get('/local/calcSun/sunRise',{params:{lat:latitude, lng:longitude}})
+                this.$axios.get('/local/user/sunRise',{params:{lat:latitude, lng:longitude}})
                         .then(res => {
                             this.sunRise = res.data
                         }).catch(err => {
@@ -100,7 +100,7 @@
                         })
             },
             sunset: function(latitude, longitude) {
-                this.$axios.get('/local/calcSun/sunSet',{params:{lat:latitude, lng:longitude}})
+                this.$axios.get('/local/user/sunSet',{params:{lat:latitude, lng:longitude}})
                         .then(res => {
                             this.sunSet = res.data
                         }).catch(err => {
@@ -155,12 +155,6 @@
                     var url = loadMap.requestUrl(res);
                     this.map = "https://www.fourmilab.ch" + url;
                 })
-                // this.$axios.get('http://localhost:3000/')
-                //         .then(res => {
-                //             this.msg = res.data
-                //         }).catch(err => {
-                //             console.log(err);
-                //         })
             },
             getLightPol() {
                 this.$axios.get("/light/QueryRaster/", {

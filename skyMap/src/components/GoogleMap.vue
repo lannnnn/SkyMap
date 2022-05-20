@@ -39,7 +39,7 @@ export default {
   name: 'GoogleMap',
   data() {
     return {
-      center: { },
+      center: {},
       currentPlace: null,
       markers: [],
       places: [],
@@ -88,7 +88,7 @@ export default {
     getRouterData() {
       console.log(this.$route.query.lat === undefined)
       if(this.$route.query.lat === undefined){
-        this.center ={ lat: 11.1216, lng: 46.0759 }
+        this.center ={ lng: 11.1216, lat: 46.0759 }
         this.geolocate()
       }
       else {
