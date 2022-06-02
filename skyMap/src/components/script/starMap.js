@@ -64,5 +64,15 @@ module.exports={
         } else {
             return "The light pollution here within 5km is pretty heavy, not a suitable location for stargazing, Maybe try somewhere further..."
         }
+    },
+
+    processPol(lightPol) {
+        var pol = (lightPol).split(";");
+        return  pol[pol.length -1]
+    },
+
+    processMin(lightPol) {
+        var pol = (lightPol).split(";");
+        return  pol[pol.length -2]
     }
 }

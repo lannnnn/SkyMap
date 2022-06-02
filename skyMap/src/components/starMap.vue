@@ -56,7 +56,7 @@
 </template>
 
 <script>
-    // const calcSun = require('./script/calcSun');
+    // const calcSun = require('./script/calcSun'); #removed as a backend software support
     const loadMap = require('./script/starMap');
     export default {
         data(){
@@ -91,7 +91,6 @@
         },
         methods: {
             sunrise: function(latitude, longitude) {
-                // this.sunRise = calcSun.calcnew(1, latitude, longitude);
                 this.$axios.get('/local/user/sunRise',{params:{lat:latitude, lng:longitude}})
                         .then(res => {
                             this.sunRise = res.data
@@ -165,8 +164,7 @@
                         key: 'r4LLevKa62JOuI78'
                     }
                 }).then(res=>{
-                    const lightPol = (res.data).split(";");
-                    this.lightPol = lightPol[lightPol.length -1]
+                    this.lightPol = loadMap.processPol(res.data)
                     this.comment = loadMap.processLevel(this.lightPol)
                 })
                 this.$axios.get("/light/QueryRaster/", {
@@ -178,10 +176,8 @@
                     }
                 }).then(res=>{
                     // data: pixel count, sum, ...., mean, std. dev, min, max
-                    var data = (res.data).split(";");
-                    var min = data[data.length - 2]
-                    var message = loadMap.processMessage(min)
-                    this.message = message
+                    var min = loadMap.processMin(res.data)
+                    this.message = loadMap.processMessage(min)
                 })
             },
         }
