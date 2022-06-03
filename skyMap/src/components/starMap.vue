@@ -56,8 +56,7 @@
 </template>
 
 <script>
-    // const calcSun = require('./script/calcSun'); #removed as a backend software support
-    const loadMap = require('./script/starMap');
+    const loadMap = require('./script/starMap'); 
     export default {
         data(){
             return {
@@ -69,6 +68,7 @@
                 lightPol: 0,
                 comment: "",
                 message: "",
+                range: " ",
             }
         },
         mounted(){
@@ -94,9 +94,17 @@
                 this.$axios.get('/local/user/sunRise',{params:{lat:latitude, lng:longitude}})
                         .then(res => {
                             this.sunRise = res.data
+                            // ******comment here because it's more covenient to directly use the Vue structure as the front end*******//
+                            // this.$axios.get('/data/user/setSunRise',{params:{sunRise: this.sunRise}})
+                            //     .then(res => {
+                            //         console.log(this.sunRise)
+                            //         console.log(res)
+                            //     }).catch(err => {
+                            //         console.log(err);
+                            // })      
                         }).catch(err => {
                             console.log(err);
-                        })
+                        })  
             },
             sunset: function(latitude, longitude) {
                 this.$axios.get('/local/user/sunSet',{params:{lat:latitude, lng:longitude}})
@@ -149,11 +157,14 @@
                         starbm = tmp;
                     }
                 }
+
                 var payload = loadMap.combinePayload(lon, limag, starnm, starbm);
                 this.$axios.post("/map/cgi-bin/Yourtel", payload).then(res=>{
                     var url = loadMap.requestUrl(res);
                     this.map = "https://www.fourmilab.ch" + url;
                 })
+                // var payload = loadMap.combinePayload(lon, limag, starnm, starbm);
+                
             },
             getLightPol() {
                 this.$axios.get("/light/QueryRaster/", {
@@ -164,20 +175,46 @@
                         key: 'r4LLevKa62JOuI78'
                     }
                 }).then(res=>{
-                    this.lightPol = loadMap.processPol(res.data)
-                    this.comment = loadMap.processLevel(this.lightPol)
+                    this.$axios.get("/adapt/user/processPol", {
+                        params:{
+                            lightPol: JSON.stringify(res.data)
+                        }
+                    }).then(res=> {
+                        this.lightPol = res.data
+                        this.$axios.get("/busi/user/processLevel", {
+                            params:{
+                                lightPol: this.lightPol
+                            }
+                        }).then(res=>this.comment = res.data)
+                    })
                 })
-                this.$axios.get("/light/QueryRaster/", {
-                    params: {
-                        ql: 'viirs_2021',
-                        qt: 'area_t',
-                        qd: loadMap.processRange(this.center.lat, this.center.lng),
-                        key: 'r4LLevKa62JOuI78'
+                this.$axios.get("/adapt/user/processRange", { 
+                    params:{
+                        lat:this.center.lat, 
+                        lng:this.center.lng
                     }
                 }).then(res=>{
+                    var range = res.data;
+                    console.log(range)
+                    this.$axios.get("/light/QueryRaster/", {
+                        params: {
+                            ql: 'viirs_2021',
+                            qt: 'area_t',
+                            qd: range,
+                            key: 'r4LLevKa62JOuI78'
+                        }
+                    }).then(res=>{
+                        var min = loadMap.processMin(res.data)
+                            this.$axios.get("/busi/user/processMessage", {
+                                params:{
+                                    min: min
+                                }
+                            }).then(res=>this.message = res.data)
+                    })
+                
                     // data: pixel count, sum, ...., mean, std. dev, min, max
-                    var min = loadMap.processMin(res.data)
-                    this.message = loadMap.processMessage(min)
+                    // var min = loadMap.processMin(res.data)
+                    // this.message = loadMap.processMessage(min)
                 })
             },
         }

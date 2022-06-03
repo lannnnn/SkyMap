@@ -1,4 +1,4 @@
-# vue-google-maps-example
+# sky-maps-server
 
 ## Project setup
 ```

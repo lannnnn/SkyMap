@@ -42,7 +42,31 @@ module.exports = {
           pathRewrite: {
             '^/local': '/'
           }
-        }
+        },
+        '/data': {
+          target: 'http://localhost:3001/',
+          ws: false,
+          changeOrigin: true,
+          pathRewrite: {
+            '^/data': '/'
+          }
+        },
+        '/busi': {
+          target: 'http://localhost:3002/',
+          ws: false,
+          changeOrigin: true,
+          pathRewrite: {
+            '^/busi': '/'
+          }
+        },
+        '/adapt': {
+          target: 'http://localhost:3003/',
+          ws: false,
+          changeOrigin: true,
+          pathRewrite: {
+            '^/adapt': '/'
+          }
+        },
       },
       headers: {
         'Access-Control-Allow-Origin': '*',

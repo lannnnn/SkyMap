@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const calcSun = require('../public/javascripts/calcSun');
-const loadMap = require('../public/javascripts/starMap');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
