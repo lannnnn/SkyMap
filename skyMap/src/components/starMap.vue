@@ -175,20 +175,20 @@
                         key: 'r4LLevKa62JOuI78'
                     }
                 }).then(res=>{
-                    this.$axios.get("/adapt/user/processPol", {
+                    this.$axios.get("/server/adapt/processPol", {
                         params:{
                             lightPol: JSON.stringify(res.data)
                         }
                     }).then(res=> {
                         this.lightPol = res.data
-                        this.$axios.get("/busi/user/processLevel", {
+                        this.$axios.get("/server/busi/processLevel", {
                             params:{
                                 lightPol: this.lightPol
                             }
                         }).then(res=>this.comment = res.data)
                     })
                 })
-                this.$axios.get("/adapt/user/processRange", { 
+                this.$axios.get("/server/adapt/processRange", { 
                     params:{
                         lat:this.center.lat, 
                         lng:this.center.lng
@@ -205,7 +205,7 @@
                         }
                     }).then(res=>{
                         var min = loadMap.processMin(res.data)
-                            this.$axios.get("/busi/user/processMessage", {
+                            this.$axios.get("/server/busi/processMessage", {
                                 params:{
                                     min: min
                                 }

@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 const adaptMng = require('../public/javascripts/adaptMng');
+const busiMng = require('../public/javascripts/busiMng');
 
-/* GET users listing. */
+/* GET adaptMng */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
