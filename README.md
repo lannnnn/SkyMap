@@ -12,6 +12,8 @@ github, nodejs
 
 Start:
 
+run `npm install` anywhere if needed
+
 run `npm start` under direction  /SunServer/skyServer, /skyMapServer/skymapserver
 
 run `npm run serve` under direction /skyMap
