@@ -8,11 +8,11 @@ google map API
 
 version and environment control:
 
-Anaconda, github, nodejs
+github, nodejs
 
 Start:
 
-run `npm start` under direction  /SunServer/skyServer, /DataLayer/dataserver, /BusinessLayer/busiserver and /AdapterLayer/adapterserver
+run `npm start` under direction  /SunServer/skyServer, /skyMapServer/skymapserver
 
 run `npm run serve` under direction /skyMap
 
