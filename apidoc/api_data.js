@@ -23,8 +23,8 @@ define({ "api": [
     "url": "",
     "version": "0.0.0",
     "filename": "./public/apidoc/main.js",
-    "group": "_home_lannnnn_Desktop_SkyMap_skyMapServer_skymapserver_public_apidoc_main_js",
-    "groupTitle": "_home_lannnnn_Desktop_SkyMap_skyMapServer_skymapserver_public_apidoc_main_js",
+    "group": "_home_lannnnn_Desktop_skyMap_public_apidoc_main_js",
+    "groupTitle": "_home_lannnnn_Desktop_skyMap_public_apidoc_main_js",
     "name": ""
   },
   {
@@ -84,7 +84,7 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "\"date=0&lon=3.5&coords=on&moonp=on&deep=on&deepm=6.5&consto=on&constn=on&constb=on&limag=6&starn=on&starnm=3&starb=on&starbm=5&showmb=-1.5&showmd=6.0&imgsize=512&fontscale=1.0&scheme=0&elements=\"",
-          "type": "json"
+          "type": "String"
         }
       ]
     },
@@ -117,17 +117,10 @@ define({ "api": [
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "code",
-            "description": "<p>200</p>"
-          },
-          {
-            "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "msg",
-            "description": "<p>minimal light pollution level</p>"
+            "field": "res",
+            "description": "<p>minimal light pollution level nearby</p>"
           }
         ]
       },
@@ -135,7 +128,7 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "{\n    \"1.3\"\n}",
-          "type": "json"
+          "type": "String"
         }
       ]
     },
@@ -168,17 +161,10 @@ define({ "api": [
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "code",
-            "description": "<p>200</p>"
-          },
-          {
-            "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "msg",
-            "description": "<p>light pollution level</p>"
+            "field": "res",
+            "description": "<p>light pollution level in chosen position</p>"
           }
         ]
       },
@@ -186,7 +172,7 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "{\n   \"44.6\"\n}",
-          "type": "json"
+          "type": "String"
         }
       ]
     },
@@ -226,17 +212,10 @@ define({ "api": [
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "code",
-            "description": "<p>200</p>"
-          },
-          {
-            "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "msg",
-            "description": "<p>LINESPACE data</p>"
+            "field": "res",
+            "description": "<p>processed range info</p>"
           }
         ]
       },
@@ -244,7 +223,7 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "{\n    \"LINESTRING(14.073893777845102%2046.051465432555204,14.130198921900401%2046.086718281761705,14.227702951849816%2046.011421399400916,14.073893777845102%2046.051465432555204)\"\n}",
-          "type": "json"
+          "type": "String"
         }
       ]
     },
@@ -277,17 +256,10 @@ define({ "api": [
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "code",
-            "description": "<p>200</p>"
-          },
-          {
-            "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "msg",
-            "description": "<p>map url</p>"
+            "field": "res",
+            "description": "<p>abstracted url</p>"
           }
         ]
       },
@@ -295,7 +267,7 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "{\n    \"Yourtel?di=913F9CCB5E540BD4F12430AEB6D8DD057490F4AA180919E7CC19D960057C674A2E360F653C06B818D66E0A2796CFEFF348108A10484695DD9266F43DAE1630C0D77739AC082C67572F81EE9B2D84583FEC416CF411A4161B66FC9A0FC87F4A0AEF60D36470435EE4EB1F51220A5D33E9E31CCFF7C392AA30D2CDB843E5018D98CC616D884E966841ADCA\"\n}",
-          "type": "json"
+          "type": "String"
         }
       ]
     },
@@ -339,7 +311,7 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "{\n    \"Yourtel?di=913F9CCB5E540BD4F12430AEB6D8DD057490F4AA180919E7CC19D960057C674A2E360F653C06B818D66E0A2796CFEFF348108A10484695DD9266F43DAE1630C0D77739AC082C67572F81EE9B2D84583FEC416CF411A4161B66FC9A0FC87F4A0AEF60D36470435EE4EB1F51220A5D33E9E31CCFF7C392AA30D2CDB843E5018D98CC616D884E966841ADCA\"\n}",
-          "type": "json"
+          "type": "String"
         }
       ]
     },
@@ -383,7 +355,7 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "{\n    \"Yourtel?di=913F9CCB5E540BD4F12430AEB6D8DD057490F4AA180919E7CC19D960057C674A2E360F653C06B818D66E0A2796CFEFF348108A10484695DD9266F43DAE1630C0D77739AC082C67572F81EE9B2D84583FEC416CF411A4161B66FC9A0FC87F4A0AEF60D36470435EE4EB1F51220A5D33E9E31CCFF7C392AA30D2CDB843E5018D98CC616D884E966841ADCA\"\n}",
-          "type": "json"
+          "type": "String"
         }
       ]
     },
@@ -436,7 +408,7 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "{\n    ”Not a suitable star gazing position . . .”\n}",
-          "type": "json"
+          "type": "String"
         }
       ]
     },
@@ -467,7 +439,7 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "{\n    \"44.5\"\n}",
-          "type": "json"
+          "type": "String"
         }
       ]
     },
@@ -498,7 +470,7 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "{\n    ”The light pollution here within 5km is pretty heavy . . . ”\n}",
-          "type": "json"
+          "type": "String"
         }
       ]
     },
@@ -529,7 +501,7 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "{\n    \"04:15 UTC\"\n}",
-          "type": "json"
+          "type": "String"
         }
       ]
     },
@@ -560,7 +532,7 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "{\n    \"20:42 UTC\"\n}",
-          "type": "json"
+          "type": "String"
         }
       ]
     },
@@ -604,7 +576,7 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "{\n    \"200\"\n}",
-          "type": "json"
+          "type": "String"
         }
       ]
     },
@@ -648,7 +620,7 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "{\n    \"200\"\n}",
-          "type": "json"
+          "type": "String"
         }
       ]
     },
@@ -692,7 +664,7 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "{\n    \"200\"\n}",
-          "type": "json"
+          "type": "String"
         }
       ]
     },
@@ -736,7 +708,7 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "{\n    \"200\"\n}",
-          "type": "json"
+          "type": "String"
         }
       ]
     },
@@ -780,12 +752,114 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "{\n    \"200\"\n}",
-          "type": "json"
+          "type": "String"
         }
       ]
     },
     "version": "1.0.0",
     "filename": "./routes/data.js",
     "groupTitle": "data_layer"
+  },
+  {
+    "type": "get",
+    "url": "http://localhost:3000/sunRise",
+    "title": "sunRise",
+    "description": "<p>calculate the sunrise time</p>",
+    "name": "sunRise",
+    "group": "server",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "lat",
+            "description": "<p>location latitude</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "lng",
+            "description": "<p>location longitude</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "res",
+            "description": "<p>sunrise time in UTC</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    \"04:15\"\n}",
+          "type": "String"
+        }
+      ]
+    },
+    "version": "1.0.0",
+    "filename": "./routes/index.js",
+    "groupTitle": "server"
+  },
+  {
+    "type": "get",
+    "url": "http://localhost:3000/sunSet",
+    "title": "sunSet",
+    "description": "<p>calculate the sunset time</p>",
+    "name": "sunSet",
+    "group": "server",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "lat",
+            "description": "<p>location latitude</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "lng",
+            "description": "<p>location longitude</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "res",
+            "description": "<p>sunset time in UTC</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    \"20:32\"\n}",
+          "type": "String"
+        }
+      ]
+    },
+    "version": "1.0.0",
+    "filename": "./routes/index.js",
+    "groupTitle": "server"
   }
 ] });

@@ -11,7 +11,7 @@ const dataMng = require('../public/javascripts/dataMng');
  * @apiParam {String} sunrise time
  *
  * @apiSuccess {String} res state code for susscess or failure
- * @apiSuccessExample {json} Success-Response:
+ * @apiSuccessExample {String} Success-Response:
  *  {
  *      "200"
  *  }
@@ -30,7 +30,7 @@ router.get('/setSunRise', function(req, res, next) {
  * @apiGroup data layer
  *
  * @apiSuccess {String} res sunrise time
- * @apiSuccessExample {json} Success-Response:
+ * @apiSuccessExample {String} Success-Response:
  *  {
  *      "04:15 UTC"
  *  }
@@ -50,7 +50,7 @@ router.get('/getSunRise', function(req, res, next) {
  * @apiParam {String} sunset time
  *
  * @apiSuccess {String} res state code for susscess or failure
- * @apiSuccessExample {json} Success-Response:
+ * @apiSuccessExample {String} Success-Response:
  *  {
  *      "200"
  *  }
@@ -69,7 +69,7 @@ router.get('/setSunSet', function(req, res, next) {
  * @apiGroup data layer
  *
  * @apiSuccess {String} res sunset time
- * @apiSuccessExample {json} Success-Response:
+ * @apiSuccessExample {String} Success-Response:
  *  {
  *      "20:42 UTC"
  *  }
@@ -89,7 +89,7 @@ router.get('/getSunSet', function(req, res, next) {
  * @apiParam {String} light pollution data
  *
  * @apiSuccess {String} res state code for susscess or failure
- * @apiSuccessExample {json} Success-Response:
+ * @apiSuccessExample {String} Success-Response:
  *  {
  *      "200"
  *  }
@@ -108,7 +108,7 @@ router.get('/setLightPol', function(req, res, next) {
  * @apiGroup data layer
  *
  * @apiSuccess {String} res sunset time
- * @apiSuccessExample {json} Success-Response:
+ * @apiSuccessExample {String} Success-Response:
  *  {
  *      "44.5"
  *  }
@@ -128,7 +128,7 @@ router.get('/getLightPol', function(req, res, next) {
  * @apiParam {String} message
  *
  * @apiSuccess {String} res state code for susscess or failure
- * @apiSuccessExample {json} Success-Response:
+ * @apiSuccessExample {String} Success-Response:
  *  {
  *      "200"
  *  }
@@ -147,7 +147,7 @@ router.get('/setMessage', function(req, res, next) {
  * @apiGroup data layer
  *
  * @apiSuccess {String} res message
- * @apiSuccessExample {json} Success-Response:
+ * @apiSuccessExample {String} Success-Response:
  *  {
  *      ”The light pollution here within 5km is pretty heavy . . . ”
  *  }
@@ -167,7 +167,7 @@ router.get('/getMessage', function(req, res, next) {
  * @apiParam {String} comment
  *
  * @apiSuccess {String} res state code for susscess or failure
- * @apiSuccessExample {json} Success-Response:
+ * @apiSuccessExample {String} Success-Response:
  *  {
  *      "200"
  *  }
@@ -186,7 +186,7 @@ router.get('/setComment', function(req, res, next) {
  * @apiGroup data layer
  *
  * @apiSuccess {String} res comment
- * @apiSuccessExample {json} Success-Response:
+ * @apiSuccessExample {String} Success-Response:
  *  {
  *      ”Not a suitable star gazing position . . .”
  *  }
